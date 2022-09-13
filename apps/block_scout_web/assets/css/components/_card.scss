@@ -1,0 +1,525 @@
+$card-background-color: #fff !default;
+$card-tab-active: $primary !default;
+$card-default-border-radius: 10px !default;
+$card-horizontal-padding: 30px;
+$card-vertical-padding: 30px;
+$card-background-1: $primary !default;
+$card-background-1-text-color: #fff !default;
+$card-tab-icon-color: #20b760 !default;
+$card-tab-icon-color-active: #fff !default;
+
+.card {
+  background-color: $card-background-color;
+  border-radius: $card-default-border-radius;
+  border: none;
+  box-shadow: 0 0 30px 0 rgba(202, 199, 226, 0.5);
+  margin-bottom: $common-container-margin;
+
+  .block-details-row {
+    flex-direction: row;
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+    }
+
+    .block-detail-el {
+      & + .block-detail-el {
+        @include media-breakpoint-down(sm) {
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+}
+
+.card-background-1 {
+  background-color: $card-background-1;
+  color: $card-background-1-text-color;
+  a:not(.dropdown-item),
+  a:not(.dropdown-item):hover {
+    color: $card-background-1-text-color;
+  }
+}
+
+.card-header {
+  background: transparent;
+  border-bottom: 1px solid $base-border-color;
+  padding: $card-vertical-padding $card-horizontal-padding;
+
+  &-tabs {
+    margin: (-$card-spacer-y) (-$card-spacer-x);
+  }
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.2rem;
+  margin-bottom: 2rem;
+
+  &.lg-card-title {
+    @media (max-width: 374px) {
+      font-size: 13px;
+    }
+  }
+
+  &.margin-bottom-md {
+    margin-bottom: 25px;
+  }
+
+  &.margin-bottom-sm {
+    margin-bottom: 15px;
+  }
+
+  &.margin-bottom-xs {
+    margin-bottom: 10px;
+  }
+
+  &.margin-bottom-0 {
+    margin-bottom: 0;
+  }
+
+  .card-title-container & {
+    line-height: 1.2;
+    margin: 0;
+
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+.card-subtitle {
+  color: #333;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 0 30px;
+
+  &.margin-bottom-0 {
+    margin-bottom: 0;
+  }
+}
+
+.card-title-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px $card-horizontal-padding;
+
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+  }
+}
+
+.card-title-paging {
+  padding: 0px $card-horizontal-padding;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 54px;
+}
+
+.card-footer-paging {
+  padding: 0px $card-horizontal-padding;
+  padding-bottom: 25px;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 80px;
+}
+
+.card-title-controls {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+  }
+
+  .card-title-control {
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 20px;
+      margin-right: 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.card-body {
+  padding: $card-horizontal-padding;
+}
+
+.card-body-flex-column-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-server-response-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.card-chain-blocks {
+  min-height: 120px;
+  padding: 1rem;
+  justify-content: center;
+  margin-bottom: 20px;
+  [class*="col-"]:last-child {
+    .tile {
+      margin-bottom: 0;
+    }
+  }
+  .col-xs-12 {
+    &:not(:first-child) {
+      .card-chain-item {
+        border-top: 2px dashed #E7E7E7;
+        @media (min-width: $breakpoint-lg) {
+          border-top: 0;
+          border-left: 2px dashed #E7E7E7;
+        }
+      }
+    }
+  }
+  .card-chain-item {
+    display: flex;
+    flex: 1;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    @media (min-width: $breakpoint-lg) {
+      justify-content: flex-start;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding-left: 32px;
+    }
+
+    .card-chain-item-content {
+      display: flex;
+      flex-direction: column;
+      margin-left: 24px;
+
+      .cart-chain-item--title {
+        font-size: 15px;
+        font-weight: 400;
+        color: #828BA0;
+      }
+
+      .cart-chain-item--data {
+        font-size: 22px;
+        font-weight: 700;
+        color: #333333;
+      }
+    }
+
+    .card-chain-item-image {
+      flex-basis: 20%;
+    }
+
+
+  }
+}
+
+.card-chain-marketcap {
+  display: flex;
+  min-height: 225px;
+  margin-bottom: 20px;
+  background-color: rgb(202 199 226 / 25%);
+  flex-direction: column !important;
+  @media(min-width: $breakpoint-lg) {
+    flex-direction: row !important;
+  }
+  .card-chain-marketcap-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 15px;
+    flex: 1;
+    padding: 25px;
+    justify-content: center;
+    box-shadow: 0 0 5px 0 rgba(202, 199, 226, 0.5);
+    margin-top: 15px;
+    @media (min-width: $breakpoint-lg) {
+      margin-top: 0px;
+      flex-direction: row;
+    }
+    &:not(:first-child) {
+      @media (min-width: $breakpoint-lg) {
+        margin-left: 15px;
+      }
+    }
+    &:first-child {
+      padding-top: 60px;
+    }
+  }
+  .card-chain-supply {
+    display: flex;
+    flex-direction: column;
+    border-left: 5px solid #ce312a;
+    padding-left: 15px;
+    &:not(:first-child) {
+      margin-top: 50px;
+      @include media-breakpoint-between(sm, md) {
+        margin-top: 25px;
+      }
+    }
+    .card-chain-supply--title {
+      font-size: 15px;
+      font-weight: 400;
+      color: #828BA0;
+    }
+    .card-chain-supply--data {
+      font-size: 18px;
+      font-weight: 700;
+      color: #333333;
+    }
+    @include media-breakpoint-between(sm, md) {
+      flex: 1;
+    }
+  }
+
+  .card-chain-info-price {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 35%;
+    @include media-breakpoint-up(lg) {
+      align-self: center;
+    }
+    .card-chain-info-price--value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333333;
+    }
+    .card-chain-info-price--text {
+      font-size: 14px;
+      font-weight: 400;
+      color: #828BA0;
+    }
+  }
+
+  .card-chain-info-asset {
+    display: flex;
+    margin-bottom: 20px;
+    .card-chain-info-asset--logo{
+      align-self: center;
+    }
+    .card-chain-info-asset--info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-left: 8px;
+    }
+    .card-chain-info-asset--name {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .card-chain-info-asset--description {
+      font-size: 14px;
+      font-weight: 400;
+      color: #828BA0;
+    }
+  }
+
+  .card-chain-info-marketcap{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border-top: 2px dashed #E7E7E7;
+    margin-top: 20px;
+    padding-top: 20px;
+    @media (min-width: $breakpoint-lg) {
+      border-top: 0;
+      border-left: 2px dashed #E7E7E7;
+      padding-left: 30px;
+      margin-top: 0;
+      padding-top: 0;
+    }
+    .card-chain-info-marketcap-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .card-chain-info-marketcap--title {
+      font-size: 14px;
+      font-weight: 400;
+      color: #828BA0;
+    }
+    .card-chain-info-marketcap--value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333333;
+    }
+  }
+}
+.card-chain-info-supply {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50%;
+}
+.card-chain-info-wallet {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  @media (max-width: $breakpoint-lg) {
+    margin-top: 50px;
+  }
+}
+.card-chain-transactions {
+  min-height: 664px;
+  max-height: auto;
+
+  .tile {
+    margin-bottom: 0;
+  }
+}
+
+.card-tabs {
+  align-items: center;
+  border-top-left-radius: $card-default-border-radius;
+  border-top-right-radius: $card-default-border-radius;
+  border-bottom: 1px solid $base-border-color;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
+}
+
+.card-tab {
+  align-items: center;
+  background-color: $card-background-color;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: normal;
+  height: 70px;
+  padding: 0 25px;
+  text-align: center;
+  transition: $transition-cont;
+
+  &:hover {
+    background-color: rgba($card-tab-active, .15);
+    color: $card-tab-active;
+    text-decoration: none;
+  }
+
+  @include media-breakpoint-down(md) {
+    display: none;
+    width: 100%;
+  }
+
+  .fa-check-circle {
+    color: $card-tab-icon-color;
+    margin-left: 6px;
+  }
+
+  &.active {
+    background-color: $card-tab-active;
+    color: #fff;
+    cursor: default;
+    text-decoration: none;
+
+    .fa-check-circle {
+      color: $card-tab-icon-color-active;
+    }
+
+    @include media-breakpoint-down(md) {
+      cursor: pointer;
+      display: flex;
+      order: -1;
+
+      &::after {
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+        border-right: 0.3em solid transparent;
+        border-top: 0.3em solid;
+        content: "";
+        display: inline-block;
+        height: 0;
+        margin-left: 10px;
+        width: 0;
+      }
+
+      &.noCaret::after {
+        display: none;
+      }
+    }
+  }
+}
+
+.mob-transaction {
+  @include media-breakpoint-down(sm) {
+    margin-left: 15px!important;
+  } 
+}
+
+.implementation-container {
+  margin-top: 10px;
+}
+
+.implementation-title {
+  float: left;
+  margin-right: 5px;
+}
+
+.implementation-value {
+  line-height: 30px;
+}
+
+.connect-container {
+  display: flex;
+  line-height: 36px;
+}
+
+.write-contract-btn {
+  padding: 6px 8px !important;
+  height: 31px !important;
+  font-size: 11px;
+}
+
+.contract-plus-btn-container {
+  height: 31px !important;
+  &:hover i {
+    color: #fff !important;
+  }
+}
+
+.contract-plus-btn {
+  color: $primary;
+  font-size: 15px;
+}
+
+.custom-power-input {
+  height: 20px;
+  width: 50px !important;
+  margin-top: -10px !important;
+}
+
+.list-title-description {
+  @media (min-width: $breakpoint-lg) {
+    display: inline-block;
+  }
+}
+
+.list-top-pagination-container-wrapper {
+  @media (min-width: $breakpoint-lg) {
+    float: right;
+  }
+}
+
+.function-output {
+  margin-left: -1rem;
+}

@@ -1,0 +1,32 @@
+<% status = transaction_status(@transaction) %>
+<% error_in_internal_tx = @transaction.has_error_in_internal_txs %>
+<tr class="tile tile-type-<%= type_suffix(@transaction) %>-new fade-in <%= status_class(@transaction) %>" data-test="<%= type_suffix(@transaction) %>" data-identifier-hash="<%= @transaction.hash %>" style="display: flex">
+    <td class="col-md-12 col-xl-5 d-flex flex-row">
+      <span class="tile-transaction-label"><%= gettext "Transaction" %></span>
+      <span class="tile-transaction-hash d-flex"><%= render "_link.html", transaction_hash: @transaction.hash, data_test: "address_hash_link" %></span>
+    </td>
+    <td class="col-md-12 col-xl-3 d-flex flex-row">
+      <span class="tile-transaction-label"><%= gettext "Type" %></span>
+      <span class="tile-transaction-status">
+        <%= if error_in_internal_tx do %>
+          <%= render BlockScoutWeb.CommonComponentsView, "_i_tooltip_2.html", text: gettext("Error in internal transactions"), additional_classes: ["color-inherit"] %>
+        <% end %><%= transaction_display_type(@transaction) %>
+        <span style="padding-left: 5px">/</span>
+        <%= if status_class(@transaction) == "tile-status--pending" do %>
+          <div class="loading-spinner-small">
+            <span class="loading-spinner-block-1"></span>
+            <span class="loading-spinner-block-2"></span>
+          </div>
+        <% end %>
+        <%= formatted_result(status) %>
+      </span>
+    </td>
+    <td class="col-md-12 col-xl-2 d-flex flex-row">
+      <span class="tile-transaction-label"><%= gettext "Token/Coin" %></span>
+      <span class="tile-transaction-text"><%= gettext "Ether" %></span>
+    </td>
+    <td class="col-md-12 col-xl-2 d-flex flex-row">
+      <span class="tile-transaction-label"><%= gettext "Amount" %></span>
+      <span class="tile-transaction-text"><%= value(@transaction, include_label: false) %></span>
+    </td>
+</tr>

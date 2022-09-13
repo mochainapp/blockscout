@@ -1,0 +1,137 @@
+<footer class="footer">
+  <div class="footer-body container">
+    <!-- Logo -->
+    <!--
+    <div class="row footer-logo-row">
+      <div class="col-md-12">
+        <%= link to: webapp_url(@conn), class: "footer-brand" do %>
+          <%= if logo_footer() do %>
+            <img class="footer-logo" src="<%= static_path(@conn, logo_footer()) %>" alt="<%= subnetwork_title() %>" />
+          <% end %>
+          <%= if logo_text() do %>
+            <span class="logo-text in-footer <%= unless logo_footer(), do: "no-logo" %>"> <%= logo_text() %> </span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    -->
+    <% other_explorers = other_explorers() %>
+    <% col_size = if Enum.empty?(other_explorers), do: 3, else: 2 %>
+
+    <div class="row">
+      <div class="col-xs-12 col-lg-10">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-lg-<%= col_size %> footer-list">
+            <h3>General</h3>
+            <ul>
+              <li><a href="" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("About") %></a></li>
+              <li><a href="" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Whitepaper") %></a></li>
+              <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Ecosystem") %></a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-md-6 col-lg-<%= col_size %> footer-list">
+            <h3>Developer</h3>
+            <ul>
+              <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Technical Docs") %></a></li>
+              <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Mainnet") %></a></li>
+              <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Testnet") %></a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-md-6 col-lg-<%= col_size %> footer-list">
+            <h3>Community</h3>
+            <ul>
+              <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Twitter") %></a></li>
+              <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Telegram") %></a></li>
+              <li><a href="" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Contact us") %></a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-md-6 col-lg-<%= col_size %> footer-list">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Tokens") %></a></li>
+              <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Api-docs") %></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-lg-2 box-network">
+        <button type="button" class="btn-dark float-right" onclick="addNetwork('web3');">
+          <img class="mr-1" width="15" src="/images/metamask.svg" alt="Metamask"> Add MO Network
+        </button>
+      </div>
+
+    </div>
+    <div class="row border-top border-primary copyright">
+      <p class="text-center">Copyright © All right reserved 2022. MO – Blockchain for Digital Identity</p>
+    </div>
+
+  </div>
+</footer>
+<script src="/js/web3-utils.min.js"></script>
+<script src="/js/web3-eth.min.js"></script>
+<script src="/js/web3-providers-http.min.js"></script>
+<script type="text/javascript">
+        var eth;
+        var isTestnet = 'false';
+
+        async function addNetwork(type) {
+
+            if (type === 'web3') {
+                if (typeof ethereum !== 'undefined') {
+                    eth = new Web3Eth(ethereum);
+                } else if (typeof web3 !== 'undefined') {
+                    eth = new Web3Eth(web3.givenProvider);
+                } else {
+                    eth = new Web3Eth(ethereum);
+                }
+            }
+
+            if (typeof eth !== 'undefined') {
+                var network = 0;
+                network = await eth.net.getId();
+                netID = network.toString();
+                var params;
+                if (isTestnet == "false") {
+                    if (netID == "7924") {
+                        alert("MO Network has already been added to Metamask.");
+                        return;
+                    } else {
+                        params = [{
+                            chainId: '0x1EF4',
+                            chainName: 'MO Network Mainnet',
+                            nativeCurrency: {
+                                name: 'Mo Chain',
+                                symbol: 'MO',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://mainnet-rpc.moscan.app/'],
+                            blockExplorerUrls: ['https://moscan.app/']
+                        }]
+                    }
+                } else {
+                    if (netID == "22936") {
+                        alert("MO Test Network has already been added to Metamask.");
+                        return;
+                    } else {
+                        params = [{
+                            chainId: '0x5998',
+                            chainName: 'MO Network Testnet',
+                            nativeCurrency: {
+                                name: 'Mo Chain',
+                                symbol: 'MO',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://testnet-rpc.motestnet.app/'],
+                            blockExplorerUrls: ['https://motestnet.app/']
+                        }]
+                    }
+                }
+
+                window.ethereum.request({ method: 'wallet_addEthereumChain', params })
+                    .then(() => console.log('Success'))
+                    .catch((error) => console.log("Error", error.message));
+            } else {
+                alert('Unable to locate a compatible web3 browser!');
+            }
+        }
+</script>
